@@ -54,5 +54,14 @@ nnUNetv2_predict -i <input_folder> -o <output_folder> -d 801 -c 3d_fullres -f 0
 - Classification (F1): 0.70
 
 ## References
-- Isensee et al. nnU-Net (2021)
-- Cao et al. Pancreatic Cancer Detection (2023)
+- Isensee, F., Jaeger, P.F., Kohl, S.A.A. et al. nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation. *Nat Methods* 18, 203–211 (2021). https://doi.org/10.1038/s41592-020-01008-z
+
+- Cao, K., Xia, Y., Yao, J. et al. Large-scale pancreatic cancer detection via non-contrast CT and deep learning. *Nat Med* 29, 3033–3043 (2023). https://doi.org/10.1038/s41591-023-02640-w
+
+- Maier-Hein, L., Reinke, A., Godau, P. et al. Metrics reloaded: recommendations for image analysis validation. *Nat Methods* 21, 195–212 (2024). https://doi.org/10.1038/s41592-023-02151-z
+
+- Hu, Y., et al. Rapid and Accurate Diagnosis of Acute Aortic Syndrome using Non-contrast CT: A Large-scale, Retrospective, Multi-center and AI-based Study. *arXiv preprint* arXiv:2406.15222 (2024). https://arxiv.org/abs/2406.15222
+
+- Fast and Low-resource Semi-supervised Abdominal Organ Segmentation in CT. *FLARE 2022 Challenge*. Retrieved from https://flare22.grand-challenge.org/awards/
+
+- Fast, Low-resource, and Accurate Organ and Pan-cancer Segmentation in Abdomen CT. *AbdomenCT-Org Challenge 2023*. Retrieved from https://codalab.lisn.upsaclay.fr/competitions/12239#learn_the_details-awards
