@@ -7,15 +7,20 @@ This repository extends nnUNetv2 for multi-task pancreas cancer segmentation and
 nnUNet_raw/
 ├── Dataset801_PancreasCancer/
 │   ├── imagesTr/
-│   │   ├── quiz_0_041_0000.nii.gz
+│   │   ├── quiz_0_041_0000.nii.gz  
+│   │   ├── quiz_1_042_0000.nii.gz  
+│   │   ├── quiz_2_043_0000.nii.gz
 │   │   └── ...
 │   ├── labelsTr/
 │   │   ├── quiz_0_041.nii.gz
+│   │   ├── quiz_1_042.nii.gz
+│   │   ├── quiz_2_043.nii.gz
 │   │   └── ...
 │   ├── imagesVal/
 │   ├── labelsVal/
 │   ├── imagesTs/
-│   └── dataset.json
+│   ├── dataset.json
+│   └── subtype_mapping.json  # Maps case IDs to subtypes (0,1,2)
 ```
 
 ## Requirements
