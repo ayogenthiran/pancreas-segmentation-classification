@@ -2,6 +2,17 @@
 
 This repository extends nnUNetv2 for multi-task pancreas cancer segmentation and classification.
 
+# Deep Learning for Automatic Cancer Segmentation and Classification in 3D CT Scans
+
+## Environment and Requirements
+- GPU: Tesla T4 (16GB)
+- CUDA version: Compatible
+- Python version: 3.8+
+
+```bash
+pip install nnunetv2 SimpleITK nibabel pandas numpy matplotlib
+```
+
 ## Dataset Structure
 ```
 nnUNet_raw/
@@ -23,40 +34,49 @@ nnUNet_raw/
 │   └── subtype_mapping.json  # Maps case IDs to subtypes (0,1,2)
 ```
 
-## Requirements
 
-```bash
-pip install nnunetv2
-pip install -r requirements.txt
-```
 
 ## Preprocessing
-
 ```bash
-# Dataset conversion to nnUNet format
-python convert_to_nnunet.py --input_path <original_data> --output_path <nnunet_raw>
-
-# nnUNet preprocessing
-nnUNetv2_plan_and_preprocess -d 801 --verify_dataset_integrity
+# Data preprocessing with ResEncM planner
+nnUNetv2_plan_and_preprocess -d 001 -pl nnUNetPlannerResEncM
 ```
 
 ## Training
-
 ```bash
-# Train nnUNet with classification head
-nnUNetv2_train 801 3d_fullres 0
+# Full training
+nnUNetv2_train 001 3d_fullres 0 -tr nnUNetTrainer -p nnUNetResEncUNetMPlans 
 ```
 
 ## Inference
-
 ```bash
-nnUNetv2_predict -i <input_folder> -o <output_folder> -d 801 -c 3d_fullres -f 0
+# Validation inference
+nnUNetv2_predict -i <input_folder> \
+                 -o <output_folder> \
+                 -d 001 \
+                 -c 3d_fullres \
+                 -tr nnUNetTrainer \
+                 -p nnUNetResEncUNetMPlans \
+                 -f 0 \
+                 -chk checkpoint_best.pth
 ```
 
+## Model Details
+- Architecture: Modified nnUNetv2 with classification head
+- Optimizer: Adam (lr=0.01)
+- Loss Functions: 
+  - Segmentation: Dice Loss
+  - Classification: Cross-Entropy Loss
+- Training: 100 epochs
+
 ## Results
-- Pancreas Seg (DSC): 0.91
-- Lesion Seg (DSC): 0.31  
-- Classification (F1): 0.70
+| Metric | Score |
+|--------|--------|
+| Pancreas DSC | 0.8678 |
+| Lesion DSC | 0.3893 |
+
+## Trained Models
+- Hardware Requirements: Tesla T4 GPU (16GB)
 
 ## References
 - Isensee, F., Jaeger, P.F., Kohl, S.A.A. et al. nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation. *Nat Methods* 18, 203–211 (2021). https://doi.org/10.1038/s41592-020-01008-z
